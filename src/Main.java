@@ -3,6 +3,7 @@ import java.util.concurrent.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        // Reuse a limited set of worker threads for 1,000 counting tasks.
         int workers = Runtime.getRuntime().availableProcessors();
         ExecutorService executor = Executors.newFixedThreadPool(workers);
         ArrayList<Future<Long>> futures = new ArrayList<>();
@@ -19,6 +20,7 @@ public class Main {
                 futures.add(executor.submit(task));
             }
 
+            // Submit all tasks first, then wait for and combine their results.
             long total = 0;
             for (Future<Long> future : futures) {
                 total += future.get();
