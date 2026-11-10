@@ -33,6 +33,6 @@ public class Main {
         } finally {
             executor.shutdown();
         }
-        System.out.println("Project complete");
+        System.out.println("Timer branch complete");
     }
 }
