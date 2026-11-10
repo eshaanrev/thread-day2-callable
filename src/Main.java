@@ -18,6 +18,12 @@ public class Main {
                 };
                 futures.add(executor.submit(task));
             }
+
+            long total = 0;
+            for (Future<Long> future : futures) {
+                total += future.get();
+            }
+            System.out.println("Count: " + total);
         } finally {
             executor.shutdown();
         }
