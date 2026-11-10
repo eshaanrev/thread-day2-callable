@@ -3,6 +3,8 @@ import java.util.concurrent.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        long startTime = System.nanoTime();
+
         // Reuse a limited set of worker threads for 1,000 counting tasks.
         int workers = Runtime.getRuntime().availableProcessors();
         ExecutorService executor = Executors.newFixedThreadPool(workers);
@@ -25,10 +27,12 @@ public class Main {
             for (Future<Long> future : futures) {
                 total += future.get();
             }
+            double seconds = (System.nanoTime() - startTime) / 1_000_000_000.0;
             System.out.println("Count: " + total);
+            System.out.println("Time: " + seconds + " seconds");
         } finally {
             executor.shutdown();
         }
-        System.out.println("Main branch complete");
+        System.out.println("Project complete: counting and timer merged");
     }
 }
