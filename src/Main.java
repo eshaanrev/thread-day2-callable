@@ -29,6 +29,6 @@ public class Main {
         } finally {
             executor.shutdown();
         }
-        System.out.println("Project complete");
+        System.out.println("Main branch complete");
     }
 }
